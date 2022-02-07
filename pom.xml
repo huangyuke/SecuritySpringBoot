@@ -39,6 +39,11 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
         <!--jsp页面使用jstl标签-->
         <dependency>
             <groupId>javax.servlet</groupId>

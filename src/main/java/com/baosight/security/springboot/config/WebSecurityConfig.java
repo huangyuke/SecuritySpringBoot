@@ -43,6 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()//除了/r/**，其他的请求可以访问
                 .and()
                 .formLogin()//允许表单登录
-                .successForwardUrl("/login-success");//自定义登陆成功的页面地址
+                .loginPage("/login-view")//登陆页面
+                .loginProcessingUrl("/login")
+                .successForwardUrl("/login-success")//自定义登陆成功的页面地址
+                .permitAll();
     }
 }
