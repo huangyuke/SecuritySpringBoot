@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //安全拦截机制（最重要）
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/r/r1").hasAuthority("p1")
                 .antMatchers("/r/r2").hasAuthority("p2")
                 .antMatchers("/r/**").authenticated()//所有/r/**的请求必须认证通过
@@ -46,6 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login-view")//登陆页面
                 .loginProcessingUrl("/login")
                 .successForwardUrl("/login-success")//自定义登陆成功的页面地址
-                .permitAll();
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
     }
 }
