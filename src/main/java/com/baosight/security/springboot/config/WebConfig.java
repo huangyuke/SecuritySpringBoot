@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @version 1.0
  */
 @Configuration//相当于springmvc.xml文件
-@ResponseBody
 public class WebConfig implements WebMvcConfigurer {
 
 //    //视图解析器
